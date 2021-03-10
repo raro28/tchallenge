@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class PlayerController implements PlayerAPI {
 
@@ -20,6 +22,7 @@ public class PlayerController implements PlayerAPI {
 
     @Override
     public ResponseEntity<Result> process(PostPlayer rq) {
-        return null;
+        List<String> result = playerService.process(rq.getPlayers());
+        return ResponseEntity.ok(Result.builder().result(result).build());
     }
 }

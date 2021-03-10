@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/players")
 public interface PlayerAPI {
     @Operation(summary = "Process a list of players", tags = {"crud"})
-    @ApiResponse(responseCode = "202", description = "Players processed")
-    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponse(responseCode = "200", description = "Players processed")
+    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Result> process(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "The players to process") @RequestBody final PostPlayer rq);
 }
