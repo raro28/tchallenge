@@ -12,6 +12,7 @@ spring:
 
   kafka:
     producer:
+      key-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 spring.jackson.deserialization.FAIL_ON_UNKNOWN_PROPERTIES: true
