@@ -1,0 +1,17 @@
+## PostgreSQL
+spring:
+  datasource:
+    # url: jdbc:mysql://localhost:3306/challenge
+    url: jdbc:h2:mem:challenge
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+spring.jackson.deserialization.FAIL_ON_UNKNOWN_PROPERTIES: true
