@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
@@ -30,10 +32,12 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public List<String> process(List<Player> players) {
         List<String> result = new ArrayList<>(players.size());
+        List<PlayerEntity> dbPlayers = new ArrayList<>();
+
         for (Player player : players) {
             switch (player.getType()) {
                 case "expert":
-                    playerRepository.save(Converters.toEntity(player, PlayerEntity.class));
+                    dbPlayers.add(Converters.toEntity(player, PlayerEntity.class));
                     result.add(String.format("player %s stored in DB", player.getName()));
                     break;
                 case "novice":
@@ -45,6 +49,8 @@ public class PlayerServiceImpl implements PlayerService {
                     break;
             }
         }
+
+        playerRepository.saveAll(dbPlayers);
 
         return result;
     }
